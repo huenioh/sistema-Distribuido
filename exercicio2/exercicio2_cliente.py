@@ -17,16 +17,15 @@ def main(start, end, workers):
         print(f"Conexão estabelecida com sucesso!")
         client_socket.sendall(serialized_interval)
 
-        received_data = b''  # Inicializa uma sequência de bytes vazia
+        received_data = b''
 
         while True:
             data_chunk = client_socket.recv(BUFFER_SIZE)
             if not data_chunk:
-                break  # Recebeu todos os dados
+                break
 
             received_data += data_chunk
 
-        # Aguarde até receber todos os dados antes de tentar desserializar
         client_socket.shutdown(socket.SHUT_RDWR)
 
         primes = pickle.loads(received_data)
@@ -35,7 +34,6 @@ def main(start, end, workers):
 if __name__ == "__main__":
     start_time = time.time()
 
-    # Teste com diferentes combinações de valores para N e T
     N_values = [1000000, 2000000]
     T_values = [2, 4]
 

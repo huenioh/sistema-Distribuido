@@ -37,7 +37,6 @@ def handle_client(client_socket, start_interval, end_interval, workers):
 
     elapsed_time = end_time - start_time
 
-    # Salvando os números primos, o tempo de execução e a quantidade de trabalhadores no nome do arquivo
     save_to_file(interval, result, elapsed_time, workers)
 
     serialized_result = pickle.dumps(result)
